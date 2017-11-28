@@ -1,0 +1,4 @@
+
+public class Employee extends User {
+	protected int salary;
+}

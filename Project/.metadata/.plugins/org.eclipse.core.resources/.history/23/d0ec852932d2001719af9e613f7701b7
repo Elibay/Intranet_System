@@ -1,0 +1,23 @@
+
+public class ViewFunctions {
+
+	public static void viewMarks(int id) {
+		System.out.println("");
+	}
+
+	public static void viewAttandance(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void viewTranscript(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void viewNews() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

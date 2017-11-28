@@ -1,0 +1,10 @@
+import java.util.Scanner;
+
+public class Login {
+	public static int login() {
+		Scanner sc = new Scanner(System.in);
+		
+		return 0;
+	}
+
+}

@@ -1,0 +1,15 @@
+
+public class User {
+	public String name, surname;
+	public int id;
+	protected String type;
+	public String toString() {
+		return id + " " + name + " " + surname;
+	}
+	public User (String name, String surname, int id) {
+		this.name = name;
+		this.surname = surname;
+		this.id = id;
+	}
+	
+}

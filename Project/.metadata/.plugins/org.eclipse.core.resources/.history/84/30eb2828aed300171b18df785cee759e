@@ -1,0 +1,12 @@
+package Other;
+
+import Users.User;
+import Users.Other.Student;
+
+public class UserFactory {
+	public static User getType(String type) {
+		if (type.equals("Student"))
+			return new Student();
+		
+	}
+}

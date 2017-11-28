@@ -1,0 +1,33 @@
+package Users;
+import Other.*;
+import Users.*;
+import Course.*;
+import Storage.*;
+import java.io.Serializable;
+import java.util.Vector;
+
+public class User implements Serializable {
+	public String name, surname;
+	public String password;
+	public int id;
+	
+	public String type;
+	public Vector <String> functions;
+	
+	public String toString() {
+		return id + " " + name + " " + surname;
+	}
+	
+	public User (String name, String surname, int id) {
+		this.name = name;
+		this.surname = surname;
+		this.id = id;
+		password = "123456";
+		functions = new Vector<String>();
+	}
+	public void viewListOfFunctions () {
+		for (Object function:functions)
+			System.out.println("Please choose function: " + function);
+	}
+	
+}

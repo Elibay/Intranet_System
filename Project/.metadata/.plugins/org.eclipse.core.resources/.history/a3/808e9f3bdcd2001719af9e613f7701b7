@@ -1,0 +1,12 @@
+import java.util.Scanner;
+
+public class Login {
+	public static int login() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Please enter login:");
+		int id = sc.nextInt();
+		sc.close();
+		return 0;
+	}
+
+}

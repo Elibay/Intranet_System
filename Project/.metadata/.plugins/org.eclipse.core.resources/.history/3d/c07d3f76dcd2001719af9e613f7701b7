@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class Login {
+	public static int login() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Please enter login:");
+		int id = sc.nextInt();
+		if (Storage.users.containsKey(id) == false) {
+			System.out.println("Incorrect login");
+		}
+		sc.close();
+		return id;
+	}
+
+}

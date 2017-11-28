@@ -1,0 +1,7 @@
+
+public class Employee extends User {
+	protected int salary;
+	public int getSalary() {
+		return salary;
+	}
+}

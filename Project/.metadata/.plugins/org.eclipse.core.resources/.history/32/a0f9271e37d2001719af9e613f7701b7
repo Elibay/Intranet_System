@@ -1,0 +1,38 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Parent {
+	public static void save (Map <Integer, ORworker> ORWorkers) throws IOException {
+		try {
+			FileOutputStream fos2 = new FileOutputStream("ORWorkers.out");
+			ObjectOutputStream oos2 = new ObjectOutputStream(fos2);
+			oos2.writeObject(ORWorkers);
+			fos2.close();
+			oos2.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Error In Save ORWorkers");
+		}
+	}
+	
+	public static Map <Integer, ORworker> getORworkers() throws IOException, ClassNotFoundException {
+		try {
+			FileInputStream fis2 = new FileInputStream("ORWorkers.out");
+			ObjectInputStream oin2 = new ObjectInputStream(fis2);
+			Map <Integer, ORworker> ORworkers = (HashMap<Integer, ORworker>) oin2.readObject();
+			oin2.close();
+			fis2.close();
+			return ORworkers;
+		} catch (FileNotFoundException e) {
+			System.out.println("Error In get OR Workers");
+			return new HashMap <Integer, ORworker>();
+		}
+		
+	}
+
+}

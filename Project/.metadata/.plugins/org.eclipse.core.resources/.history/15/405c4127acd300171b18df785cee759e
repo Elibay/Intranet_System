@@ -1,0 +1,7 @@
+package Other;
+
+public class UserFactory {
+	public static User getType(String type) {
+		
+	}
+}

@@ -1,0 +1,28 @@
+
+public class ViewFunctions implements View {
+
+	@Override
+	public void viewMarks(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewAttandance(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewTranscript(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void viewNews() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}

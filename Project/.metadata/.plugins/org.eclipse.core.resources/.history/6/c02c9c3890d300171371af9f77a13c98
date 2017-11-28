@@ -1,0 +1,32 @@
+import java.io.IOException;
+import Other.*;
+import Users.*;
+import Users.Employees.Admin;
+import Course.*;
+import Storage.*;
+
+public class Main {
+	static void initialize() throws ClassNotFoundException, IOException {
+		Storage.get();
+	}
+	static void start() {
+		int userID = 0;
+		System.out.println("Hello welcome to our INTRANET System please login at first");
+		while (true) {
+			userID = Login.login();
+			System.out.println(userID);
+			if (userID != -1)
+				break;
+		}
+	}
+	static void finish() throws IOException {
+		Storage.save();
+		System.out.println("Bye!");
+	}
+	
+	public static void main(String[] args) throws ClassNotFoundException, IOException {
+		initialize();
+		start();
+	}
+
+}

@@ -1,0 +1,10 @@
+
+public class Employee extends User {
+	protected int salary;
+	public int getSalary() {
+		return salary;
+	}
+	public int setSalary(int salary) {
+		this.salary = salary;
+	}
+}

@@ -1,0 +1,46 @@
+import java.util.Map;
+
+public class Student extends User implements View{
+
+	private String faculty;
+	private double gpa;
+	private int sumOfCredits;
+	private int yearOfStudy;
+	
+	public Student(String name, String surname, int id, String faculty, int yearOfStudy) {
+		super(name, surname, id);
+		this.faculty = faculty;
+		this.yearOfStudy = yearOfStudy;
+		gpa = 0;
+		sumOfCredits = 0;
+		yearOfStudy = 1;
+		functions.add("View Gpa");
+		
+		
+	}
+	public void updateGpa (double gpa, int credit) {
+		this.gpa = gpa
+	}
+	@Override
+	public void viewMarks(int id) {
+		ViewFunctions.viewMarks(id);
+	}
+
+	@Override
+	public void viewAttandance(int id) {
+		ViewFunctions.viewAttandance(id);
+	}
+
+	@Override
+	public void viewTranscript(int id) {
+		// TODO Auto-generated method stub
+		ViewFunctions.viewTranscript(id);
+	}
+
+	@Override
+	public void viewNews() {
+		// TODO Auto-generated method stub
+		ViewFunctions.viewNews();
+	}
+
+}

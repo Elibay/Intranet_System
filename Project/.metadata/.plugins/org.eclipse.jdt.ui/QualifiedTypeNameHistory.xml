@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="ORworker"/>
+<fullyQualifiedTypeName name="java.util.Vector"/>
+<fullyQualifiedTypeName name="admin.Admin"/>
+<fullyQualifiedTypeName name="Other.View"/>
+<fullyQualifiedTypeName name="Other.ViewFunctions"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="Users.Employees.Teacher"/>
+<fullyQualifiedTypeName name="Users.Employees.ORworker"/>
+<fullyQualifiedTypeName name="Users.Other.Parent"/>
+<fullyQualifiedTypeName name="java.util.Scanner"/>
+<fullyQualifiedTypeName name="Users.Other.Student"/>
+<fullyQualifiedTypeName name="Users.Employees.Admin"/>
+<fullyQualifiedTypeName name="Users.User"/>
+<fullyQualifiedTypeName name="Storage.Storage"/>
+</qualifiedTypeNameHistroy>

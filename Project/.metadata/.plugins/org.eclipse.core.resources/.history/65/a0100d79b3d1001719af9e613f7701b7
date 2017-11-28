@@ -1,0 +1,7 @@
+
+public interface View {
+	void viewMarks(int id);
+	void viewAttandance(int id);
+	void viewTranscript(int id);
+	
+}

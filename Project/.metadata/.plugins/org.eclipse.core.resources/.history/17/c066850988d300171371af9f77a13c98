@@ -1,0 +1,92 @@
+package Course;
+
+import java.io.*;
+import java.util.*;
+
+import Users.Other.Student;
+
+public class Course implements Serializable {
+	private String name;
+	private String teacher;
+	private int capacity, credit;
+	private int idOfCourse, numberOfStudents;
+	private Map < Student, Integer > students;
+	
+	public void changeMark(Student s, int mark) {
+		if (students.containsKey(s) == false) {
+			System.out.println("Student not found");
+			return;
+		}
+		students.replace(s, mark);
+		System.out.println("Mark changed on student " + s.name);
+		double gpa = getGpa(mark);
+		s.updateGpa(gpa, credit, name);
+	}
+	public void 
+	public void addStudent(Student s) {
+		students.put(s, 0);
+	}
+	private double getGpa(int x) {
+		if (x < 50)
+			return 0;
+		x -= 50;
+		x /= 5;
+		return Math.min(4.0, 1 + x * 0.34);
+	}
+	
+	public static void save (Map <Integer, Course> courses) throws IOException {
+		try {
+			FileOutputStream fos2 = new FileOutputStream("courses.out");
+			ObjectOutputStream oos2 = new ObjectOutputStream(fos2);
+			oos2.writeObject(courses);
+			fos2.close();
+			oos2.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Error In Save Course");
+		}
+	}
+	public static Map < Integer, Course> getCourses() throws IOException, ClassNotFoundException {
+		try {
+			FileInputStream fis2 = new FileInputStream("courses.out");
+			ObjectInputStream oin2 = new ObjectInputStream(fis2);
+			Map<Integer, Course> courses = (HashMap<Integer, Course>) oin2.readObject();
+			oin2.close();
+			fis2.close();
+			return courses;
+		} catch (FileNotFoundException e) {
+			System.out.println("Error ");
+			return new HashMap <Integer, Course>();
+		}
+		
+	}
+	
+	public Course(String name, int capacity, int credit, int idOfCourse) {
+		this.name = name;
+		this.capacity = capacity;
+		this.credit = credit;
+		this.idOfCourse = idOfCourse;
+		numberOfStudents = 0;
+	}
+	public void setTeacher(String teacher) {
+		this.teacher = teacher;
+	}
+	
+	public int getSumCredit() {
+		return credit;
+	}
+	public String getCourseName() {
+		return name;
+	}
+	public int getCapacity() {
+		return capacity;
+	}
+	public String toString() {
+		return name + " Capacity: " + capacity + " Credits: " + credit + " Teacher: " + teacher;
+	}
+	public boolean canAddStudent() {
+		if (capacity >= numberOfStudents + 1)
+			return true;
+		return false;
+	}
+	
+}

@@ -1,0 +1,4 @@
+
+public class ViewFunctions implements View {
+	
+}

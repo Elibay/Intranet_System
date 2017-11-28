@@ -1,0 +1,80 @@
+package Other;
+
+import java.util.Scanner;
+
+import Users.Employees.Admin;
+import Users.Employees.ORworker;
+import Users.Employees.Teacher;
+import Users.Other.Parent;
+import Users.Other.Student;
+
+public class Run {
+	public static void runStudent(Student s) {
+		
+	}
+	public static void run(Admin a, int function) {
+		System.out.println("You choose funciton " + a.functions.elementAt(function - 1) + ":");
+		Scanner sc = new Scanner(System.in);
+		int id = Storage.Storage.getNumberOfUsers();
+		
+		if (function == 1) {
+			System.out.println("Please Enter old Password");
+			String old = sc.nextLine();
+			System.out.println("Please Enter new Password");
+			String newPassword = sc.nextLine();
+			a.changePassword(old, newPassword);
+			return;
+		}
+		if (function == 2) {
+			System.out.println("Please enter type of User");
+			String type = sc.nextLine();
+			System.out.println("Please enter Name of User");
+			String name = sc.nextLine();
+			System.out.println("Please enter Surname of User");
+			String surname = sc.nextLine();
+			if (type.equals("Student"))
+			{
+				System.out.println("Please enter Faculty of User");
+				String faculty = sc.nextLine();
+				Student s = new Student(name, surname, id, faculty);
+				a.addUser(s);
+			}
+			else if (type.equals("Admin")) {
+				System.out.println("Please enter Salary of User");
+				Admin admin = new Admin(name, surname, id, salary)
+				public Admin(String name, String surname, int id, int salary);
+			}
+			else if (type.equals("")) {
+				
+				
+			}
+			
+		}
+	}
+	public static void runAdmin(Admin a) {
+		a.functions.add("exit");
+		Scanner sc = new Scanner(System.in);
+		while (true) {
+			System.out.println("Please choose functions");
+			int p = 1;
+			for (String function: a.functions) {
+				System.out.println(p + ") " + function);
+				++ p;
+			}
+			int function = sc.nextInt();
+			run(a, function);
+			
+		}
+	}
+	public static void runTeacher(Teacher t) {
+		
+	}
+	public static void runORworker(ORworker o) {
+		
+	}
+	public static void runParent(Parent p) {
+		
+	}
+	
+	
+}
