@@ -12,7 +12,7 @@ public class Login {
 		System.out.println("Please enter login:");
 		String input = sc.nextLine();
 		int id = Integer.parseInt(input);
-		if (Storage.users.containsKey(id) == false) {
+		if (Storage.users.containsKey(id) == false || Storage.users.get(id) == null) {
 			System.out.println("Incorrect login");
 			return -1;
 		}

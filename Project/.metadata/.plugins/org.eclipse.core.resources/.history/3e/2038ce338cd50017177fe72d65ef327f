@@ -1,0 +1,72 @@
+package Other;
+import Storage.Storage;
+import java.util.Scanner;
+
+import Users.User;
+import Users.Employees.Admin;
+import Users.Employees.ORworker;
+import Users.Employees.Teacher;
+import Users.Other.Parent;
+import Users.Other.Student;
+
+public class Run {
+	private static void changePass(User a) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Please Enter old Password");
+		String old = sc.nextLine();
+		System.out.println("Please Enter new Password");
+		String newPassword = sc.nextLine();
+		a.changePassword(old, newPassword);
+		User u = Storage.users.get(a.id);
+		u.changePassword(old, newPassword);
+	}
+	public static void runStudent(Student s) {
+		
+	}
+	public static boolean run(Admin a, int function) {
+		System.out.println("You choose funciton " + a.functions.elementAt(function - 1) + ":");
+		Scanner sc = new Scanner(System.in);
+		int id = Storage.getNumberOfUsers();
+		switch (function) {
+		case 1: return true;
+		case 2: changePass(a);
+		case 3:
+			Other.CreateUser.updateUser(a, id);
+			System.out.println("Added User " + Storage.users.get(id));
+		case 4:
+			System.out.println("Please enter id");
+			id = sc.nextInt();
+			a.delUser(id);	
+		case 5:
+			System.out.println("Please enter id");
+			id = sc.nextInt();
+			Other.CreateUser.updateUser(a, id);
+		case 6: 
+		if (function == 6) {
+			
+		}
+		return false;
+	}
+	public static void runAdmin(Admin a) {
+		Scanner sc = new Scanner(System.in);
+		while (true) {
+			System.out.println("Please choose functions");
+			a.viewListOfFunctions();
+			int function = sc.nextInt();
+			if (run(a, function)) {
+				return;
+			}
+		}
+	}
+	public static void runTeacher(Teacher t) {
+		
+	}
+	public static void runORworker(ORworker o) {
+		
+	}
+	public static void runParent(Parent p) {
+		
+	}
+	
+	
+}

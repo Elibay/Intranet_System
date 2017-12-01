@@ -1,0 +1,16 @@
+package doFunctions;
+
+import java.util.Scanner;
+
+import Storage.Storage;
+import Users.User;
+import Users.Employees.Admin;
+
+public class Run {
+	
+	
+	
+	public static boolean run(Student s, int funciton) {
+		
+	}
+}

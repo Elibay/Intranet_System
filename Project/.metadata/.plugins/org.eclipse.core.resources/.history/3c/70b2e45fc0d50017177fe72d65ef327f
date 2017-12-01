@@ -1,0 +1,104 @@
+package Users.Other;
+
+import Other.*;
+import Users.*;
+import Users.Employees.Admin;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.HashMap;
+import java.util.Map;
+
+import Course.*;
+
+public class Student extends User implements View{
+
+	private String faculty;
+	private double gpa;
+	private int sumOfCredits;
+	private int yearOfStudy;
+	private Map < String, Integer > courses;
+	public Student(String name, String surname, int id, String faculty) {
+		super(name, surname, id, "Student");
+		this.faculty = faculty;
+		gpa = 0;
+		sumOfCredits = 0;
+		yearOfStudy = 1;
+		functions.addAll(ViewFunctions.toAdd());
+		functions.addElement("Add Course");
+	}
+	public void AddCourse (Course c) {
+		if (c.canAddStudent()) {
+			c.addStudent(this);
+			System.out.println("Course " + c + "added!");
+		}
+		else {
+			System.out.println("You can't add course");
+		}
+	}
+	public void updateGpa (double gpa, int credit, String nameOfCourse) {
+		if (courses.containsKey(nameOfCourse)) {
+			sumOfCredits -= courses.get(nameOfCourse);
+		}
+		this.gpa = this.gpa * sumOfCredits + gpa * credit;
+		sumOfCredits += credit;
+		this.gpa /= sumOfCredits;
+	}
+	@Override
+	public String viewGpa(int id) {
+		return gpa + "";
+	}
+
+	@Override
+	public void viewAttandance(int id) {
+		ViewFunctions.viewAttandance(id);
+	}
+
+	@Override
+	public String viewTranscript(int id) {
+		String ans = "";
+		for(Map.Entry<String, Integer > cur : courses.entrySet()) {
+		    String key = cur.getKey();
+		    Integer value = cur.getValue();
+		    ans += key + " " + value + "\n";
+		}
+		return ans;
+	}
+	@Override
+	public void viewNews() {
+		// TODO Auto-generated method stub
+		ViewFunctions.viewNews();
+	}
+	
+	public static void save (Map <Integer, Student> students) throws IOException {
+		try { 
+			FileOutputStream fos2 = new FileOutputStream("Students.out");
+			ObjectOutputStream oos2 = new ObjectOutputStream(fos2);
+			oos2.writeObject(students);
+			fos2.close();
+			oos2.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Error In Save Studnets");
+		}
+	}
+	public static Map < Integer, Students> getStudents() throws IOException, ClassNotFoundException {
+		try {
+			FileInputStream fis2 = new FileInputStream("Students.out");
+			ObjectInputStream oin2 = new ObjectInputStream(fis2);
+			Map<Integer, Student> Students = (HashMap<Integer, Student>) oin2.readObject();
+			oin2.close();
+			fis2.close();
+			return Students;
+		} catch (FileNotFoundException e) {
+			System.out.println("Error In get Student");
+			return new HashMap <Integer, Student>();
+		}
+		
+	}
+	
+
+}

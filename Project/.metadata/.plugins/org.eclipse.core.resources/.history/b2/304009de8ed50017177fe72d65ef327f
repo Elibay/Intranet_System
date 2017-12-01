@@ -1,0 +1,8 @@
+package Other;
+
+public interface View {
+	String viewGpa(int id);
+	String viewAttandance(int id);
+	void viewTranscript(int id);
+	void viewNews();
+}

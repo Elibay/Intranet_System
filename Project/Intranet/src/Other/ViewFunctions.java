@@ -1,7 +1,8 @@
 package Other;
 
 import java.util.Vector;
-
+import Storage.Storage;
+import Users.Other.Student;
 public class ViewFunctions {
 	
 	public static Vector <String> toAdd() {
@@ -13,23 +14,30 @@ public class ViewFunctions {
 		return toAdd;
 	}
 	
-	public static void viewGpa(int id) {
-		System.out.println("");
+	public static String viewGpa(int id) {
+		if (Storage.students.containsKey(id) == false) {
+			return "Error incorrect id\n";
+		}
+		Student s = Storage.students.get(id);
+		return s.viewGpa(id);
 	}
 
-	public static void viewAttandance(int id) {
-		// TODO Auto-generated method stub
-		
+	public static String viewAttandance(int id) {
+		if (Storage.students.containsKey(id) == false) {
+			return "Error incorrect id\n";
+		}
+		Student s = Storage.students.get(id);
+		return "";
 	}
 
-	public static void viewTranscript(int id) {
-		// TODO Auto-generated method stub
-		
+	public static String viewTranscript(int id) {
+		return "";
 	}
 
 	public static void viewNews() {
-		// TODO Auto-generated method stub
-		
+		for (String s: Storage.news) {
+			System.out.println(s);
+		}
 	}
 	
 }

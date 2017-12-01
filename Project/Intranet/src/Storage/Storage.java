@@ -18,15 +18,14 @@ import java.util.*;
 
 
 public class Storage {
-	public static Map < Integer, User > users; // +
+	public static Map < Integer, User > users; // + + 
 	public static Map < Integer, ORworker> ORworkers; // +
-	public static Map < Integer, Student > students; // +
+	public static Map < Integer, Student > students; // + + 
 	public static Map < Integer, Parent > parents; // +
 	public static Map < Integer, Course> courses; // +
 	public static Map < Integer, Teacher> teachers; // +
-	public static Map < Integer, Admin > admins; // +
-	public static Vector < String> news; // +
-	
+	public static Map < Integer, Admin > admins; // + + 
+	public static Vector < String> news; // + +
 	public static int getNumberOfUsers() {
 		return users.size();
 	}
@@ -37,6 +36,7 @@ public class Storage {
 		parents = Parent.getParents();
 		teachers = Teacher.getTeachers();
 		admins = Admin.getAdmins();
+		students = Student.getStudents();
 		users = getUsers();
 		news = getNews();
 	}
@@ -47,6 +47,7 @@ public class Storage {
 		Parent.save(parents);
 		Teacher.save(teachers);
 		Admin.save(admins);
+		Student.save(students);
 		save(users);
 		save(news);
 	}
@@ -84,7 +85,7 @@ public class Storage {
 			fis2.close();
 			return news;
 		} catch (FileNotFoundException e) {
-			System.out.println("Error In get OR Workers");
+			System.out.println("Error In get News");
 			return new Vector <String>();
 		}
 		
@@ -98,7 +99,7 @@ public class Storage {
 			fis2.close();
 			return Users;
 		} catch (FileNotFoundException e) {
-			System.out.println("Error In get OR Users");
+			System.out.println("Error In get Users");
 			return new HashMap <Integer, User>();
 		}
 		

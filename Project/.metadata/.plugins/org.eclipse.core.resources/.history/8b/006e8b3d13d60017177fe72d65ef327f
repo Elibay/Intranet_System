@@ -1,0 +1,74 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+import Other.*;
+import Users.*;
+import Users.Employees.Admin;
+import Users.Employees.ORworker;
+import Users.Employees.Teacher;
+import Users.Other.Parent;
+import Users.Other.Student;
+import Course.*;
+import Storage.*;
+
+public class Main {
+	static void initialize() throws ClassNotFoundException, IOException {
+		Storage.get();		
+//		Admin admin = new Admin("Elibay", "Nuptebek", 0, 100);
+//		Other.CreateUser.updateUser(admin, 1);
+//		System.exit(0);
+//		admin.addUser(admin);
+//		Storage.save();
+	}
+	public static void run(Object a) {
+		User u = (User) a;
+		Scanner sc = new Scanner(System.in);
+		System.out.println(u);
+		while (true) {
+			System.out.println("Please choose functions");
+			u.viewListOfFunctions();
+			int function = sc.nextInt();
+			if (Run.run(a, function)) {
+				return;
+			}
+		}
+	}
+	static void start() {
+		int userID = 0;
+		System.out.println("Hello welcome to our INTRANET System please login at first");
+		while (true) {
+			userID = Login.login();
+			if (userID != -1)
+				break;
+		}
+		User u = Storage.users.get(userID);
+		System.out.println("Welcome " + u.name);
+		if (u.type.equals("Student")) {
+			run(Storage.students.get(userID));
+		}
+		else if (u.type.equals("Parent")) {
+			run(Storage.parents.get(userID));
+		}
+		else if (u.type.equals("ORworker")) {
+			run(Storage.ORworkers.get(userID));
+		}
+		else if (u.type.equals("Admin")) {
+			run(Storage.admins.get(userID));
+		}
+		else if (u.type.equals("Teacher")) {
+			run(Storage.teachers.get(userID));
+		}
+		
+	}
+	static void finish() throws IOException {
+		Storage.save();
+		System.out.println("Bye!");
+	}
+	
+	public static void main(String[] args) throws ClassNotFoundException, IOException {
+		initialize();
+		start();
+		finish();
+	}
+
+}

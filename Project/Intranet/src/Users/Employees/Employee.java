@@ -12,6 +12,7 @@ public class Employee extends User {
 	public Employee(String name, String surname, int id, int salary, String type) {
 		super (name, surname, id, type);
 		this.salary = salary;
+//		functions.add("View Salary");
 	}
 	
 }

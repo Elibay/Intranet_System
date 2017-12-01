@@ -10,8 +10,8 @@ public class ORworker extends Employee implements View {
 
 	public ORworker(String name, String surname, int id, int salary) {
 		super(name, surname, id, salary, "ORworker");
-		functions = new Vector <String>();
 		functions.add("Add Course");
+		functions.add("Change Course Teacher");
 		functions.add("Add News");
 		
 		functions.addAll(ViewFunctions.toAdd());
@@ -22,7 +22,6 @@ public class ORworker extends Employee implements View {
 		System.out.println("Please enter text of News:");
 		String text = sc.nextLine();
 		Storage.news.add(text);
-		sc.close();
 	}
 	
 	public void addCourse() {
@@ -39,7 +38,6 @@ public class ORworker extends Employee implements View {
 		Course course = new Course (name, cap, cred, id);
 		Storage.courses.put(id, course);
 		System.out.println("Course added!");
-		sc.close();
 	}
 	
 	public static void save (Map <Integer, ORworker> ORWorkers) throws IOException {
@@ -70,9 +68,9 @@ public class ORworker extends Employee implements View {
 	}
 	
 	@Override
-	public void viewGpa(int id) {
+	public String viewGpa(int id) {
 		// TODO Auto-generated method stub
-		ViewFunctions.viewGpa(id);
+		return ViewFunctions.viewGpa(id);
 	}
 
 	@Override
@@ -82,9 +80,9 @@ public class ORworker extends Employee implements View {
 	}
 
 	@Override
-	public void viewTranscript(int id) {
+	public String viewTranscript(int id) {
 		// TODO Auto-generated method stub
-		ViewFunctions.viewTranscript(id);
+		return ViewFunctions.viewTranscript(id);
 	}
 
 	@Override

@@ -1,0 +1,129 @@
+package Other;
+import Storage.Storage;
+import java.util.Scanner;
+
+import Course.Course;
+import Users.User;
+import Users.Employees.Admin;
+import Users.Employees.ORworker;
+import Users.Employees.Teacher;
+import Users.Other.Parent;
+import Users.Other.Student;
+
+public class Run {
+	private static void changePass(User a) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Please Enter old Password");
+		String old = sc.nextLine();
+		System.out.println("Please Enter new Password");
+		String newPassword = sc.nextLine();
+		a.changePassword(old, newPassword);
+		User u = Storage.users.get(a.id);
+		if (u.changePassword(old, newPassword))
+			System.out.println("Password changed");
+		else
+			System.out.println("Incorrect old password");
+	}
+	
+	public static void runOR(ORworker a, int function) {
+		switch (function) {
+			default:
+				System.out.println("Error");
+				break;
+		}
+	}
+	
+	
+	public static void runStudent(Student a, int function) {
+		switch (function) {
+		case 3: 
+			System.out.println("GPA : " + a.viewGpa(a.id));
+			break;
+		case 4:
+			System.out.print(a.viewTranscript(a.id));
+			break;
+		case 5:
+			a.viewNews();
+			break;
+		case 6:
+			if (Course.viewAllCourses()) {
+				Scanner sc = new Scanner (System.in);
+				int func = sc.nextInt();
+				if (Storage.courses.containsKey(func) == false)  {
+					System.out.println("Error");
+					return;
+				}
+				Course c = Storage.courses.get(function);
+				a.addCourse(c);
+			}
+			break;
+		default:
+			System.out.println("Error");
+			break;
+		}
+	}
+	
+	public static boolean run(Object a, int function) {
+		User u = (User) a;
+		System.out.println("You choose funciton " + u.functions.elementAt(function - 1) + ":");
+		if (function == 1)
+			return true;
+		if (function == 2) {
+			changePass(u);
+			return false;
+		}
+		if (u.type.equals("Student")) {
+			Student s = (Student) a;
+			runStudent (s, function);
+		}
+		else if (u.type.equals("Parent")) {
+			
+		}
+		else if (u.type.equals("ORworker")) {
+			ORworker orr = (ORworker) a;
+			runORworker();
+		}
+		else if (u.type.equals("Admin")) {
+			Admin admin = (Admin) a;
+			runAdmin(admin, function);
+		}
+		else if (u.type.equals("Teacher")) {
+			
+		}
+		return false;
+	}
+	
+	public static void runAdmin(Admin a, int function) {
+		int id = Storage.getNumberOfUsers();
+		Scanner sc = new Scanner(System.in);
+		if (function >= 4 && function <= 8) {
+			System.out.println("Please enter id");
+			id = sc.nextInt();
+		}
+		switch (function) {
+		case 3:
+			Other.CreateUser.updateUser(a, id);
+			System.out.println("Added User " + Storage.users.get(id));
+			break;
+		case 4:
+			a.delUser(id); 
+			break;
+		case 5:
+			Other.CreateUser.updateUser(a, id);
+			System.out.println("Updated User " + Storage.users.get(id));
+			break;
+		case 6: 
+			System.out.println("GPA : " + a.viewGpa(id));
+			break;
+		case 7:
+			System.out.print(a.viewTranscript(id));
+			break;
+		case 8:
+			a.viewNews();
+			break;
+		default:
+			System.out.println("Error");
+			break;
+		}
+	}
+}

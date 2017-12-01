@@ -12,11 +12,21 @@ import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Parent extends User {
+public class Parent extends User implements View {
+	Map < Integer, Student > childs;
 	public Parent(String name, String surname, int id) {
 		super(name, surname, id, "Parent");
+		childs = new HashMap < Integer, Student>();
+		functions.addAll(ViewFunctions.toAdd());
 	}
-
+	public void printChilds() {
+		for (Map.Entry<Integer, Student> a : childs.entrySet()) {
+			System.out.println(a.getValue());
+		}
+	}
+	public void addChild(Student s) {
+		childs.put(s.id, s);
+	}
 	public static void save (Map <Integer, Parent> Parents) throws IOException {
 		try {
 			FileOutputStream fos2 = new FileOutputStream("Parents.out");
@@ -41,6 +51,33 @@ public class Parent extends User {
 			System.out.println("Error In get Parents");
 			return new HashMap <Integer, Parent>();
 		}
+		
+	}
+
+	@Override
+	public String viewGpa(int id) {
+		if (childs.containsKey(id) == false) {
+			return "Can't watch this student\n";
+		}
+		return ViewFunctions.viewGpa(id);
+	}
+
+	@Override
+	public void viewAttandance(int id) {
+		
+	}
+
+	@Override
+	public String viewTranscript(int id) {
+		if (childs.containsKey(id) == false) {
+			return "Can't watch this student\n";
+		}
+		return ViewFunctions.viewGpa(id);
+	}
+
+	@Override
+	public void viewNews() {
+		// TODO Auto-generated method stub
 		
 	}
 

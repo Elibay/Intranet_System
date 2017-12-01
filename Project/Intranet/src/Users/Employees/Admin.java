@@ -21,17 +21,10 @@ public class Admin extends Employee implements View {
 	public Admin(String name, String surname, int id, int salary) {
 		super(name, surname, id, salary, "Admin");
 		functions.add("Add User"); // +
-		functions.add("Delete User"); // -
-		functions.add("Update User"); // -
+		functions.add("Delete User"); // +
+		functions.add("Update User"); // +
 		functions.addAll(ViewFunctions.toAdd());
 	}
-	// Student +
-	// Parent + 
-	// ORWoreker + 
-	// Admin + 
-	// Executor
-	// Teacher +
-	// Parents
 	
 	public static void save (Map <Integer, Admin> admins) throws IOException {
 		try {
@@ -71,7 +64,7 @@ public class Admin extends Employee implements View {
 			Parent p = (Parent) o;
 			Storage.parents.put(u.id, p);
 		}
-		else if (u.type.equals("ORworeker")) {
+		else if (u.type.equals("ORworker")) {
 			ORworker or = (ORworker) o;
 			Storage.ORworkers.put(u.id, or);
 		}
@@ -83,34 +76,30 @@ public class Admin extends Employee implements View {
 			Teacher t = (Teacher) o;
 			Storage.teachers.put(u.id, t);
 		}
-		else if (u.type.equals("Parent")) {
-			Parent p = (Parent) o;
-			Storage.parents.put(u.id, p);
-		}
 	}
-	
+	public void delUser(int id) {
+		Storage.users.put(id, null);
+		Storage.students.remove(id);
+		Storage.teachers.remove(id);
+		Storage.parents.remove(id);
+		Storage.ORworkers.remove(id);
+		Storage.admins.remove(id);
+	}
 	@Override
-	public void viewGpa(int id) {
+	public String viewGpa(int id) {
 		// TODO Auto-generated method stub
-		ViewFunctions.viewGpa(id);
+		return ViewFunctions.viewGpa(id);
 	}
-
-
-
 	@Override
 	public void viewAttandance(int id) {
 		// TODO Auto-generated method stub
 		ViewFunctions.viewAttandance(id);
 	}
-
-
-
 	@Override
-	public void viewTranscript(int id) {
+	public String viewTranscript(int id) {
 		// TODO Auto-generated method stub
-		ViewFunctions.viewTranscript(id);
+		return ViewFunctions.viewTranscript(id);
 	}
-
 	@Override
 	public void viewNews() {
 		// TODO Auto-generated method stub
